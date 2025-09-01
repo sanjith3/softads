@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'adsoft.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'adsoft_db',
         'USER': 'root',
         'PASSWORD': 'sanjith',
