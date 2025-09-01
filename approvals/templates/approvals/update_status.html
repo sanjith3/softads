@@ -1,0 +1,30 @@
+<!-- templates/approvals/update_status.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Update Enquiry Status</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ enquiry.ad_title }}</h5>
+        <p class="card-text">
+            <strong>From:</strong> {{ enquiry.name }} ({{ enquiry.contact_number }})<br>
+            <strong>User:</strong> {{ enquiry.user.username }}<br>
+            <strong>Current Status:</strong>
+            <span class="badge
+                {% if enquiry.status == 'Approved' %}bg-success
+                {% elif enquiry.status == 'Rejected' %}bg-danger
+                {% else %}bg-secondary{% endif %}">
+                {{ enquiry.status }}
+            </span>
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Update Status</button>
+            <a href="{% url 'approvals:admin_dashboard' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

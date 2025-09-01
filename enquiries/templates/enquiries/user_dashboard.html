@@ -1,0 +1,70 @@
+<!-- templates/enquiries/user_dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>User Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Submit New Enquiry</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" id="id_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_contact_number" class="form-label">Contact Number</label>
+                        <input type="text" name="contact_number" class="form-control" id="id_contact_number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_ad_title" class="form-label">Ad Title</label>
+                        <input type="text" name="ad_title" class="form-control" id="id_ad_title" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Your Enquiries</h5>
+            </div>
+            <div class="card-body">
+                {% if enquiries %}
+                    <div class="list-group">
+                        {% for enquiry in enquiries %}
+                            <div class="list-group-item">
+                                <h6 class="mb-1">{{ enquiry.ad_title }}</h6>
+                                <p class="mb-1">Status:
+                                    <span class="badge
+                                        {% if enquiry.status == 'Approved' %}bg-success
+                                        {% elif enquiry.status == 'Rejected' %}bg-danger
+                                        {% else %}bg-secondary{% endif %}">
+                                        {{ enquiry.status }}
+                                    </span>
+                                </p>
+                                <small>Submitted: {{ enquiry.created_at|date:"M d, Y" }}</small>
+                                {% if enquiry.status == 'Approved' %}
+                                    <p class="mb-0 mt-1">
+                                        Start: {{ enquiry.start_date|date:"M d, Y" }} |
+                                        End: {{ enquiry.end_date|date:"M d, Y" }}
+                                    </p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>You haven't submitted any enquiries yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
