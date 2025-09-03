@@ -139,6 +139,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Authentication backends: use mobile-number backend first
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.MobileNumberBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
