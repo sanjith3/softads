@@ -49,6 +49,9 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 return redirect('dashboard:redirect_dashboard')
+            else:
+                # Authentication failed - add error message
+                form.add_error(None, 'Invalid mobile number or password. Please try again.')
         else:
             # Print form errors to console for debugging
             print("Login form errors:", form.errors)
