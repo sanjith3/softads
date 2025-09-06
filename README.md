@@ -256,8 +256,8 @@ If you encounter any issues or have questions:
 ## 📞 Contact
 
 For support and inquiries, please contact:
-- Email: support@adsoft.com
-- Project Maintainer: [Your Name]
+- Email's:  sanjithmit@gmail.com , v.varunprashanth@gmail.com
+- Project Maintainers: Sanjith M , Varun Prashanth V
 
 ---
 
