@@ -1,5 +1,5 @@
 # enquiries/forms.py
-from django import forms
+from django import forms #type: ignore
 from .models import Enquiry
 
 class EnquiryForm(forms.ModelForm):
